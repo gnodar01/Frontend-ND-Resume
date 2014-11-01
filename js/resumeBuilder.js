@@ -1,7 +1,10 @@
-var myName = "Nodari Gogoberidze";
-var myEmail = "gnodar01@gmail.com";
+var name = "Nodari Gogoberidze";
+var email = "gnodar01@gmail.com";
+var role = "Web Developer";
 
-var awesomeThought = "I am " + myName + " and I am AWESOME!";
-var funThoughts = awesomeThought.replace("AWESOME","FUN");
+var formattedName = HTMLheaderName.replace("%data%", name);
+var formattedRole = HTMLheaderRole.replace("%data%", role);
 
-$("#main").append(funThoughts);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
