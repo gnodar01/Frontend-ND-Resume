@@ -92,12 +92,12 @@ function displayWork() {
 	for (job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-		var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsWorked);
-		var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation);
-		var formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].jobDescription);
-		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer),
+		 formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title),
+		 formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsWorked),
+		 formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation),
+		 formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].jobDescription),
+		 formattedEmployerTitle = formattedEmployer + formattedTitle;
 
 		$(".work-entry:last").append(formattedEmployerTitle);
 		$(".work-entry:last").append(formattedWorkDates);
@@ -120,11 +120,8 @@ $(document).click(function(loc) {
 	logClicks(x,y);
 });
 
-
-$("#main").append(internationalizeButton);
-
 function inName(firstLast) {
-	var splitName = firstLast.split(" "),
+	var splitName = firstLast.trim().split(" "),
 	 changeFirstName = splitName[0].slice(0,1).toUpperCase() + splitName[0].slice(1).toLowerCase(),
 	 changeLastName = splitName[1].toUpperCase(),
 	 combineFirstLast = changeFirstName + " " + changeLastName;
@@ -132,6 +129,8 @@ function inName(firstLast) {
 }
 
 console.log(inName("nodari gogoberidze"));
+
+$("#main").append(internationalizeButton);
 
 /*var formattedName = HTMLheaderName.replace("%data%", bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
