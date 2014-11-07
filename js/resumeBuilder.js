@@ -35,16 +35,16 @@ var work = {
 var projects = {
 	"projects": [
 		{
-			"title": "none",
-			"dates": "none",
-			"description": "none",
-			"images": ["none","none"]
+			"title": "one",
+			"dates": "2014",
+			"description": "first project",
+			"images": ["http://placehold.it/350x150", "http://placehold.it/350x150"]
 		},
 		{
-			"title": "none",
-			"dates": "none",
-			"description": "none",
-			"images": ["none","none"]
+			"title": "two",
+			"dates": "2014",
+			"description": "second project",
+			"images": ["http://placehold.it/350x150", "http://placehold.it/350x150"]
 		}
 	]
 }
@@ -92,26 +92,40 @@ function displayWork() {
 	for (job in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 
-		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer),
-		 formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title),
-		 formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsWorked),
-		 formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation),
-		 formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].jobDescription),
-		 formattedEmployerTitle = formattedEmployer + formattedTitle;
-
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
 		$(".work-entry:last").append(formattedEmployerTitle);
+		var formattedWorkDates = HTMLworkDates.replace("%data%", work.jobs[job].yearsWorked);
 		$(".work-entry:last").append(formattedWorkDates);
+		var formattedWorkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation);
 		$(".work-entry:last").append(formattedWorkLocation);
+		var formattedJobDescription = HTMLworkDescription.replace("%data%", work.jobs[job].jobDescription);
 		$(".work-entry:last").append(formattedJobDescription);
-	}
-
-	$("#skillsChart").append(HTMLskillsStart);
-	for (skill in bio.skills) {
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-		$(".flex-box").append(formattedSkill);
 	}
 }
 displayWork();
+
+
+projects.display = function() {
+	for (project in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		$(".project-entry:last").append(formattedProjectTitle);
+		var formattedProjectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		$(".project-entry:last").append(formattedProjectDates);
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		$(".project-entry:last").append(formattedProjectDescription);
+		 if (projects.projects[project].images.length>0) {
+		 	for (image in projects.projects[project].images) {
+		 		var formattedProjectImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+		 		$(".project-entry:last").append(formattedProjectImage);
+		 	}
+		 }
+	}
+}
+projects.display();
 
 $(document).click(function(loc) { 
 	var x = loc.pageX;
@@ -128,27 +142,4 @@ function inName(firstLast) {
 	return combineFirstLast;
 }
 
-console.log(inName("nodari gogoberidze"));
-
 $("#main").append(internationalizeButton);
-
-/*var formattedName = HTMLheaderName.replace("%data%", bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedContact = HTMLcontactGeneric.replace("%data", bio.contacts);
-var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
-var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.gitHub);
-var formattedCity = HTMLlocation.replace("%data%", bio.contacts.city);
-var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
-var formattedWelcomeMessage = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-$("#letsConnect").append(formattedEmail);
-$("#letsConnect").append(formattedMobile);
-$("#letsConnect").append(formattedGithub);
-$("#letsConnect").append(formattedCity);
-$("#header").append(formattedBioPic);
-$("#header").append(formattedWelcomeMessage);*/
