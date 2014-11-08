@@ -71,7 +71,7 @@ var education = {
 	"onlineCourses": [
 		{
 			"name": "Udacity",
-			"city": "Oviedo, Florida",
+			"city": "Online",
 			"degree": "Nano Degree",
 			"major": "Front-End Web Development",
 			"graduationDate": "In progress",
@@ -79,7 +79,7 @@ var education = {
 		},
 		{
 			"name": "Code School",
-			"city": "Oviedo, Florida",
+			"city": "Online",
 			"degree": "none",
 			"major": "Javascript",
 			"graduationDate": "In progress",
