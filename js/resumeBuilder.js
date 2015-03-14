@@ -2,7 +2,7 @@ var model = {
 	bio: {
 		name: "Nodari Gogoberidze",
 		role: "Web Developer",
-		welcomeMessage: "I realize this looks horrendous, I'm working on cleaning up the code first. Skills below are just filler. Experience needs updating. Education is accurate.",
+		welcomeMessage: "I realize this looks horrendous, I'm working on cleaning up the code first. Skills below are just filler. Everything except for education needs updating.",
 		contacts: {
 			LinkedIn: "/in/gnodari",
 			mobile: "407-401-2267",
@@ -74,19 +74,15 @@ var model = {
 		onlineCourses: [
 			{
 				name: "Udacity",
-				location: "Online",
-				degree: "Nano Degree",
-				major: "Front-End Web Development",
-				graduationDate: "In progress",
-				websiteUrl: "https://www.codeschool.com/"
+				title: "Front-End Web Development Nano Degree",
+				graduationDate: "2015",
+				websiteUrl: "udacity.com"
 			},
 			{
 				name: "Code School",
-				location: "Online",
-				degree: "none",
-				major: "Javascript",
-				graduationDate: "In progress",
-				websiteUrl: "https://www.udacity.com"
+				title: "Javascript",
+				graduationDate: "2013",
+				websiteUrl: "codeschool.com"
 			}
 		]
 	}
@@ -157,7 +153,28 @@ var displayProjects = (function() {
 }());
 
 var diplayEducation = (function() {
-
+	$("#education").append(HTMLschoolStart);
+	var formattedSchoolName, formattedSchoolDegree, formattedSchoolDates, formattedSchoolLocation, formattedSchoolMajor;
+	for (school in model.education.schools) {
+		formattedSchoolName = HTMLschoolName.replace("%data%", model.education.schools[school].name);
+		formattedSchoolDegree = HTMLschoolDegree.replace("%data%", model.education.schools[school].degree);
+		formattedSchoolDates = HTMLschoolDates.replace("%data%", model.education.schools[school].graduationDate);
+		formattedSchoolLocation = HTMLschoolLocation.replace("%data%", model.education.schools[school].location);
+		formattedSchoolMajor = HTMLschoolMajor.replace("%data%", model.education.schools[school].major);
+		var formattedSchoolList = formattedSchoolName + formattedSchoolDegree + formattedSchoolDates + formattedSchoolLocation + formattedSchoolMajor;
+		$(".education-entry").append(formattedSchoolList);
+	}
+	$("#education").append(HTMLonlineClasses);
+	$("#education").append(HTMLschoolStart);
+	var formattedOnlineTitle, formattedOnlineSchool, formattedOnlineDates, formattedOnlineURL;
+	for (platform in model.education.onlineCourses) {
+		formattedOnlineTitle = HTMLonlineTitle.replace("%data%", model.education.onlineCourses[platform].title);
+		formattedOnlineSchool = HTMLonlineSchool.replace("%data%", model.education.onlineCourses[platform].name).replace("#", model.education.onlineCourses[platform].websiteUrl);
+		formattedOnlineDates = HTMLonlineDates.replace("%data%", model.education.onlineCourses[platform].graduationDate);
+		formattedOnlineURL = HTMLonlineURL.replace("%data%", model.education.onlineCourses[platform].websiteUrl).replace("#", model.education.onlineCourses[platform].websiteUrl);
+		formattedOnlineList = formattedOnlineTitle + formattedOnlineSchool + formattedOnlineDates + formattedOnlineURL;
+		$(".education-entry").last().append(formattedOnlineList);
+	}
 }());
 
 
