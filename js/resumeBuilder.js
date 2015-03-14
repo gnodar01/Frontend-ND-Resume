@@ -2,14 +2,16 @@ var model = {
 	bio: {
 		name: "Nodari Gogoberidze",
 		role: "Web Developer",
-		welcomeMessage: "Welcome to my resume!",
+		welcomeMessage: "I realize this looks horrendous, I'm working on cleaning up the code first. Skills below are just filler. Experience needs updating. Education is accurate.",
 		contacts: {
+			LinkedIn: "/in/gnodari",
 			mobile: "407-401-2267",
 			email: "gnodar01@gmail.com",
-			gitHub: "gnodar01",
+			gitHub: "/gnodar01",
+			twitter: "@gnodar01",
 			location: "Orlando, Florida"
 		},
-		skills: ["awesomeness", "programming", "teaching", "JS"],
+		skills: ["Front-End Web Development", "Entrepreneurship", "Financial Modeling", "Strategic Research", "Start-Up Consulting", "Lean Methodology", "Awesomeness"],
 		bioPic: "images/profile_pic.jpg"
 	},
 
@@ -90,6 +92,35 @@ var model = {
 	}
 }
 
+var displayBio = (function() {
+	var formattedHeaderName = HTMLheaderName.replace("%data%", model.bio.name);
+	var formattedHeaderRole = HTMLheaderRole.replace("%data%", model.bio.role);
+	var fromattedHeader = formattedHeaderName + formattedHeaderRole;
+	$("#header").prepend(fromattedHeader);
+
+	var formattedContactGeneric = HTMLcontactGeneric.replace("%contact%",Object.keys(model.bio.contacts)[0]).replace("%data%", model.bio.contacts.LinkedIn)
+	var formattedMobile = HTMLmobile.replace("%data%", model.bio.contacts.mobile);
+	var formattedEmail = HTMLemail.replace("%data%", model.bio.contacts.email);
+	var formattedGithub = HTMLgithub.replace("%data%", model.bio.contacts.gitHub);
+	var formattedTwitter = HTMLtwitter.replace("%data%", model.bio.contacts.twitter);
+	var formattedLocation = HTMLlocation.replace("%data%", model.bio.contacts.location);
+	var formattedContactList = formattedMobile + formattedEmail + formattedGithub + formattedTwitter + formattedLocation;
+	$("#topContacts").append(formattedContactGeneric).append(formattedContactList);
+	$("#footerContacts").append(formattedContactGeneric).append(formattedContactList);
+
+	var formattedWelcomeMessage = HTMLWelcomeMsg.replace("%data%", model.bio.welcomeMessage);
+	var formattedBioPic = HTMLbioPic.replace("%data%", model.bio.bioPic);
+	var formattedBio = formattedWelcomeMessage + formattedBioPic + HTMLskillsStart;
+	$("#header").append(formattedBio);
+	var formattedSkill;
+	for (skill in model.bio.skills) {
+		formattedSkill = HTMLskills.replace("%data%", model.bio.skills[skill]);
+		$("#skills").append(formattedSkill);
+	}
+
+
+}());
+
 var displayWork = (function() {
 	for (job in model.work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
@@ -106,9 +137,7 @@ var displayWork = (function() {
 	}
 }());
 
-
-
-projects.display = (function() {
+var displayProjects = (function() {
 	for (project in model.projects.projects) {
 		$("#projects").append(HTMLprojectStart);
 
@@ -127,6 +156,10 @@ projects.display = (function() {
 	}
 }());
 
+var diplayEducation = (function() {
+
+}());
+
 
 
 function inName(firstLast) {
@@ -137,5 +170,5 @@ function inName(firstLast) {
 	return combineFirstLast;
 }
 
-//$("#main").append(internationalizeButton);
+$("#main").append(internationalizeButton);
 $("#mapDiv").append(googleMap);
