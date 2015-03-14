@@ -1,9 +1,5 @@
 
 
-/*
-These are HTML strings. As part of the course, you'll be using JavaScript functions
-replace the %data% placeholder text you see in them.
-*/
 var HTMLheaderName = "<h1 id='name'>%data%</h1>";
 var HTMLheaderRole = "<span>%data%</span><hr/>";
 
@@ -63,10 +59,7 @@ $(document).ready(function() {
 
 
 
-/*
-The next few lines about clicks are for the Collecting Click Locations quiz in Lesson 2.
-*/
-clickLocations = [];
+/*clickLocations = [];
 
 function logClicks(x,y) {
   clickLocations.push(
@@ -83,7 +76,7 @@ $(document).click(function(loc) {
   var y = loc.pageY;
 
   logClicks(x,y);
-});
+});*/
 
 
 
@@ -116,18 +109,18 @@ function initializeMap() {
     var locations = [];
 
     // adds the single location property from bio to the locations array
-    locations.push(bio.contacts.location);
+    locations.push(model.bio.contacts.location);
 
     // iterates through school locations and appends each location to
     // the locations array
-    for (var school in education.schools) {
-      locations.push(education.schools[school].location);
+    for (var school in model.education.schools) {
+      locations.push(model.education.schools[school].location);
     }
 
     // iterates through work locations and appends each location to
     // the locations array
-    for (var job in work.jobs) {
-      locations.push(work.jobs[job].location);
+    for (var job in model.work.jobs) {
+      locations.push(model.work.jobs[job].location);
     }
 
     return locations;
@@ -219,9 +212,6 @@ function initializeMap() {
 
 }
 
-/*
-Uncomment the code below when you're ready to implement a Google Map!
-*/
 
 // Calls the initializeMap() function when the page loads
 window.addEventListener('load', initializeMap);
