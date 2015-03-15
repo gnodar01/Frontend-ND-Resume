@@ -29,7 +29,7 @@ var model = {
 			},
 			{
 				title: "Market Research Analyst",
-				employer: "Invitation Homes - a subsidiary of The Blackstone Group",
+				employer: "Invitation Homes: a subsidiary of The Blackstone Group",
 				yearsWorked: "1 year",
 				location: "Orlando, Florida",
 				jobDescription: "Determine residential real estate market values, rent values, rehab estimates"
