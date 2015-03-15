@@ -1,103 +1,72 @@
-
-
-var HTMLheaderName = "<h1 id='name'>%data%</h1>";
-var HTMLheaderRole = "<span>%data%</span><hr/>";
-
-var HTMLcontactGeneric = "<li class='flex-item'><span class='orange-text'>%contact%</span><span class='white-text'>%data%</span></li>";
-var HTMLmobile = "<li class='flex-item'><span class='orange-text'>mobile</span><span class='white-text'>%data%</span></li>";
-var HTMLemail = "<li class='flex-item'><span class='orange-text'>email</span><span class='white-text'>%data%</span></li>";
-var HTMLgithub = "<li class='flex-item'><span class='orange-text'>github</span><span class='white-text'>%data%</span></li>";
-var HTMLtwitter = "<li class='flex-item'><span class='orange-text'>twitter</span><span class='white-text'>%data%</span></li>";
-var HTMLblog = "<li class='flex-item'><span class='orange-text'>blog</span><span class='white-text'>%data%</span></li>";
-var HTMLlocation = "<li class='flex-item'><span class='orange-text'>location</span><span class='white-text'>%data%</span></li>";
-
-var HTMLbioPic = "<img src='%data%' class='biopic'>";
-var HTMLWelcomeMsg = "<span class='welcome-message'>%data%</span>";
-
-var HTMLskillsStart = "<h3 id='skillsH3'>Skills at a Glance:</h3><ul id='skills' class='flex-box'></ul>";
-var HTMLskills = "<li class='flex-item'><span class='white-text'>%data%</span></li>";
-
-var HTMLworkStart = "<div class='work-entry'></div>";
-var HTMLworkEmployer = "<a href='#'>%data%";
-var HTMLworkTitle = " - %data%</a>";
-var HTMLworkDates = "<div class='date-text'>%data%</div>";
-var HTMLworkLocation = "<div class='location-text'>%data%</div>";
-var HTMLworkDescription = "<p><br>%data%</p>";
-
-var HTMLprojectStart = "<div class='project-entry'></div>";
-var HTMLprojectTitle = "<a href='#'>%data%</a>";
-var HTMLprojectDates = "<div class='date-text'>%data%</div>";
-var HTMLprojectDescription = "<p><br>%data%</p>";
-var HTMLprojectImage = "<img src='%data%'>";
-
-var HTMLschoolStart = "<div class='education-entry'></div>";
-var HTMLschoolName = "<a href='#'>%data%";
-var HTMLschoolDegree = " -- %data%</a>";
-var HTMLschoolDates = "<div class='date-text'>%data%</div>";
-var HTMLschoolLocation = "<div class='location-text'>%data%</div>";
-var HTMLschoolMajor = "<em><br>Major: %data%</em>"
-
-var HTMLonlineClasses = "<h3>Online Classes</h3>";
-var HTMLonlineTitle = "<a href='#'>%data%";
-var HTMLonlineSchool = " - %data%</a>";
-var HTMLonlineDates = "<div class='date-text'>%data%</div>";
-var HTMLonlineURL = "<br><a href='#'>%data%</a>";
-
-var internationalizeButton = "<button>Internationalize</button>";
-var googleMap = "<div id='map'></div>";
-
-
-// Turns name in header into "international" version (last name in all caps)
-$(document).ready(function() {
-  $('button').click(function() {
-    var fullName = model.bio.name;
-    var iName = inName(fullName) || function(){};
-    $('#name').html(iName);  
-  });
-})
-
-
-
-/*clickLocations = [];
-
-function logClicks(x,y) {
-  clickLocations.push(
-    {
-      "x": x,
-      "y": y
-    }
-  );
-  console.log("x location: " + x + "; y location: " + y);
-}
-
-$(document).click(function(loc) {
-  var x = loc.pageX;
-  var y = loc.pageY;
-
-  logClicks(x,y);
-});*/
-
-
-
 var map;    // declares a global map variable
 
-
-/*
-Start here! initializeMap() is called when page is loaded.
-*/
 function initializeMap() {
 
   var locations;
 
+
+
+  // Settings to style the map made with google maps style wizrd
+  var styleArray = [
+    {
+      "featureType": "landscape",
+      "stylers": [
+        { "lightness": 100 }
+      ]
+    },{
+      "featureType": "road",
+      "elementType": "labels",
+      "stylers": [
+        { "visibility": "off" }
+      ]
+    },{
+      "featureType": "poi",
+      "stylers": [
+        { "visibility": "on" },
+        { "saturation": 60 }
+      ]
+    },{
+      "featureType": "transit",
+      "stylers": [
+        { "lightness": 52 },
+        { "visibility": "simplified" }
+      ]
+    },{
+      "featureType": "water",
+      "stylers": [
+        { "lightness": 39 }
+      ]
+    },{
+      "stylers": [
+        { "lightness": 27 }
+      ]
+    },{
+      "featureType": "road",
+      "stylers": [
+        { "saturation": 100 },
+        { "color": "#F5AE23" }
+      ]
+    }
+  ];
+
+  var styledMap = new google.maps.StyledMapType(styleArray,
+  {name: "Styled Map"});
+
   var mapOptions = {
-    disableDefaultUI: true
+    disableDefaultUI: true,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    }
   };
+
+
 
   // This next line makes `map` a new Google Map JavaScript Object and attaches it to
   // <div id="map">, which is appended as part of an exercise late in the course.
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
 
-
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
   /*
   locationFinder() returns an array of every location string from the JSONs
   written for bio, education, and work.
@@ -213,7 +182,7 @@ function initializeMap() {
 
 
 // Calls the initializeMap() function when the page loads
-window.addEventListener('load', initializeMap);
+//window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
