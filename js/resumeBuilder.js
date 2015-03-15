@@ -1,3 +1,6 @@
+/* The code below is a bit messy, and not how I would approach it if I was coding it from scratch,
+ however it is modified from an earlier project and the challenge was to take the "spaghetti code"
+ and refactor it into an MVC format.*/
 var model = {
 	bio: {
 		name: "Nodari Gogoberidze",
