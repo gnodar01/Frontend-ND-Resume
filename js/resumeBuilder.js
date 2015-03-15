@@ -106,7 +106,7 @@ var controller = {
 	},
 	listners: function() {
 		// Turns name in header into "international" version (last name in all caps)
-		this.inName = function inName(firstLast) {
+		var inName = function inName(firstLast) {
 			var splitName = firstLast.trim().split(" "),
 			 changeFirstName = splitName[0].slice(0,1).toUpperCase() + splitName[0].slice(1).toLowerCase(),
 			 changeLastName = splitName[1].toUpperCase(),
@@ -116,8 +116,8 @@ var controller = {
 
 		// Listener for inName
 		$('button').click(function() {
-		    var fullName = this.bio.name;
-		    var iName = view.inName(fullName) || function(){};
+		    var fullName = view.bio.name;
+		    var iName = inName(fullName) || function(){};
 		   	$('#name').html(iName);  
 		});
 
