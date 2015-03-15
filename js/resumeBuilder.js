@@ -121,7 +121,7 @@ var controller = {
 		   	$('#name').html(iName);  
 		});
 
-		/*clickLocations = [];
+		clickLocations = [];
 		// Logs click x and y coordinates on the document
 		function logClicks(x,y) {
 		  clickLocations.push(
@@ -138,7 +138,7 @@ var controller = {
 		  var y = loc.pageY;
 
 		  logClicks(x,y);
-		});*/
+		});
 	}
 }
 
