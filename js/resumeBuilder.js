@@ -5,7 +5,7 @@ var model = {
 	bio: {
 		name: "Nodari Gogoberidze",
 		role: "Web Developer",
-		welcomeMessage: "I realize this looks horrendous, I'm working on cleaning up the code first. Skills below are just filler. Everything except for education needs updating.",
+		welcomeMessage: "I realize this looks horrendous. Skills below are just filler. Everything except for education needs updating.",
 		contacts: {
 			LinkedIn: "/in/gnodari",
 			mobile: "407-401-2267",
